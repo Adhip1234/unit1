@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Printing Dashboard</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f8f9fa;
+        }
+        .w3-sidebar {
+            width: 250px;
+            background: #343a40;
+            color: #fff;
+        }
+        .w3-sidebar h5 {
+            padding: 15px;
+            color: #f8f9fa;
+        }
+        .w3-bar-item {
+            padding: 15px;
+            color: #adb5bd;
+        }
+        .w3-bar-item:hover, .w3-bar-item.w3-red {
+            background: #495057;
+            color: #fff;
+        }
+        .main-content {
+            margin-left: 250px;
+            padding: 20px;
+        }
+        .city {
+            display: none;
+            padding: 20px;
+            background: #bfceff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+        .file-upload input {
+            display: none;
+        }
+        .file-upload label {
+            padding: 10px 15px;
+            background: #007BFF;
+            color: #fff;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .file-upload label:hover {
+            background: #0056b3;
+        }
+        .w3-button {
+            padding: 10px 15px;
+            border-radius: 5px;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        ul li {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+
+<div class="w3-sidebar w3-bar-block">
+  <h5 class="w3-bar-item">Dashboard</h5>
+  <button class="w3-bar-item w3-button tablink" onclick="openTab(event, 'Upload')">Upload File</button>
+  <button class="w3-bar-item w3-button tablink" onclick="openTab(event, 'Orders')">My Orders</button>
+  <button class="w3-bar-item w3-button tablink" onclick="openTab(event, 'Profile')">My Profile</button>
+</div>
+
+<div class="main-content">
+  <div id="Upload" class="w3-container city">
+    <h2>Upload File</h2>
+ <br>
+    <form action="/upload" method="post" enctype="multipart/form-data">
+        <div class="file-upload">
+            <input type="file" id="stlFile" name="stlFile" accept=".stl">
+            <label for="stlFile">Choose STL File</label>
+            
+            <p>Supported file format: .STL</p>
+        </div>
+        <br>
+        <form>
+            <label for="h1">Color</label>:
+            <button>Silver</button>
+            <button>White</button>
+            <button>Green</button>
+            <br>
+
+            <label for="h1">Material</label>:
+            <button>PLA</button>
+    <br>
+
+            <label for="h1">Infill Percentage</label>:
+            <input type="number">
+        </form>
+        <br><br>
+    <button type="submit" class="w3-button w3-green">Submit</button>
+  </div>
+
+
+
+  <div id="Orders" class="w3-container city">
+    <h2>My Orders</h2>
+    <p>Track your 3D printing orders here:</p>
+    <ul>
+        <li>Order #1234: Printing in progress</li>
+        <li>Order #5678: Completed</li>
+        <li>Order #9101: Pending</li>
+    </ul>
+  </div>
+
+
+
+  <div id="Profile" class="w3-container city">
+    <h2>My Profile</h2>
+    <p>Manage your profile information:</p>
+    <p><strong>Name:</strong> John Doe</p>
+    <p><strong>Email:</strong> johndoe@example.com</p>
+    <button class="w3-button w3-blue">Edit Profile</button>
+  </div>
+  
+</div>
+
+<script>
+function openTab(evt, tabName) {
+    const cities = document.querySelectorAll('.city');
+    cities.forEach(city => city.style.display = 'none');
+
+    const tabs = document.querySelectorAll('.tablink');
+    tabs.forEach(tab => tab.classList.remove('w3-red'));
+
+    document.getElementById(tabName).style.display = 'block';
+    evt.currentTarget.classList.add('w3-red');
+}
+</script>
+
+</body>
+</html>
